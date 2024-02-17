@@ -9,13 +9,13 @@ public class Accounts implements Comparable<Accounts> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int accountId;
     @ManyToOne
-    @JoinColumn(name = "customerId") 
+    @JoinColumn(name = "customerId") // name refers to the column name in the Accounts table
     private Customers customer;
 
     private double balance;
 
     public Accounts() {
-      
+        // constrcutor
     }
 
 

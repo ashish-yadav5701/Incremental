@@ -3,21 +3,26 @@ package com.wecp.progressive.service;
 
 import com.wecp.progressive.entity.CreditCard;
 import com.wecp.progressive.repository.CreditCardRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 @Service
 public class CreditCardService {
+    private final CreditCardRepository creditCardRepository;
+
     @Autowired
-    CreditCardRepository creditCardRepository;
+    public CreditCardService(CreditCardRepository creditCardRepository) {
+        this.creditCardRepository = creditCardRepository;
+    }
+
     public List<CreditCard> getAllCreditCards() {
         return creditCardRepository.findAll();
     }
 
     public CreditCard getCreditCardById(Long id) {
-        return creditCardRepository.findById(id).get();
+        return creditCardRepository.findById(id).orElse(null);
     }
 
     public CreditCard createCreditCard(CreditCard creditCard) {
